@@ -9,8 +9,10 @@ import {
   View,
 } from 'react-native';
 import { WebBrowser } from 'expo';
-import { styles } from '../assets/styles.js';
 import { MonoText } from '../components/StyledText';
+import { styles } from '../assets/styles';
+import { ThemeContext, themes } from '../assets/themes';
+//import { Test } from './Test';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -18,16 +20,15 @@ export default class HomeScreen extends React.Component {
   };
 
   render() {
+
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+        <ScrollView style={styles.container, {backgroundColor: themes.dark.backgroundColor}} contentContainerStyle={styles.contentContainer}>
           <View style={styles.welcomeContainer}>
 
           </View>
-
-
         </ScrollView>
-
+        {/*}
         <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>This app is in development mode</Text>
 
@@ -35,9 +36,8 @@ export default class HomeScreen extends React.Component {
           <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
             <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
           </View>
-          */}
 
-        </View>
+        </View> */}
       </View>
     );
   }

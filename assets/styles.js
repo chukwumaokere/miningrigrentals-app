@@ -7,92 +7,41 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { ThemeContext, themes } from '../assets/themes';
+import { theme } from '../assets/theme';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    paddingTop: 15,
+    backgroundColor: themes[theme]['backgroundColor']
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
+  innerContainer: {
+    padding: 20,
   },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
-    alignItems: 'center',
+  rigCard: {
+    borderStyle: "solid",
+    borderWidth: 2,
+    borderRadius: 5,
+    borderColor: themes[theme]['borderColor'],
+    backgroundColor: themes[theme]['foregroundColor'],
     marginTop: 10,
-    marginBottom: 20,
   },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
+  rigInnerCard: {
+    padding: 20,
   },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
+  rigTitle: {
+    color: themes[theme]['color'],
+    fontSize: 16,
+    marginBottom: 3,
   },
-  homeScreenFilename: {
-    marginVertical: 7,
+  rigDesc: {
+    color: themes[theme]['color'],
+    fontSize: 12,
+    marginBottom: 10,
   },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
+  rigImg: {
+    height: 200,
+    padding: 10,
   },
 });

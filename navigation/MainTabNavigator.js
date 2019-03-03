@@ -1,11 +1,16 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import MyAccountScreen from '../screens/MyAccountScreen';
+import MyRentalsScreen from '../screens/MyRentalsScreen';
+import MyRigsScreen from '../screens/MyRigsScreen';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import { ThemeContext, themes } from '../assets/themes';
+import { theme } from '../assets/theme';
+
+//var theme = theme;
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -13,48 +18,54 @@ const HomeStack = createStackNavigator({
 
 HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
-  ),
+  tabBarIcon: ({ focused }) => (<TabBarIcon focused={focused} name={ Platform.OS === 'ios' ? `ios-home`: 'md-home' } />),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const MyRentalsStack = createStackNavigator({
+  MyRentals: MyRentalsScreen,
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
-    />
-  ),
+MyRentalsStack.navigationOptions = {
+  tabBarLabel: 'My Rentals',
+  tabBarIcon: ({ focused }) => (<TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-hammer' : 'md-hammer'} />),
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
+const MyRigsStack = createStackNavigator({
+  MyRigs: MyRigsScreen,
 });
 
-SettingsStack.navigationOptions = {
+MyRigsStack.navigationOptions = {
+  tabBarLabel: 'My Rigs',
+  tabBarIcon: ({ focused }) => (<TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-trophy' : 'md-trophy'} />),
+};
+
+const MyAccountStack = createStackNavigator({
+  MyAccount: MyAccountScreen,
+});
+
+MyAccountStack.navigationOptions = {
   tabBarLabel: 'Account',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
-    />
-  ),
+  tabBarIcon: ({ focused }) => (<TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-settings' : 'md-settings'} />),
 };
 
+/*
 export default createBottomTabNavigator({
   HomeStack,
-  LinksStack,
-  SettingsStack,
-});
+  MyRentalsStack,
+  MyRigsStack,
+  MyAccountStack
+}); */
+
+export default createMaterialBottomTabNavigator({
+  //Home: {screen: HomeScreen, navigationOptions: HomeStack.navigationOptions},
+  MyRentals:{screen: MyRentalsScreen, navigationOptions: MyRentalsStack.navigationOptions},
+  MyRigs: {screen: MyRigsScreen, navigationOptions: MyRigsStack.navigationOptions},
+  Account: {screen: MyAccountScreen, navigationOptions: MyAccountStack.navigationOptions},
+}, {
+  shifting: true,
+  //activeColor: "#f34541",
+  initialRouteName: 'MyRentals',
+  activeTintColor: '#f0edf6',
+  inactiveColor: '#2F3136',
+  barStyle: { backgroundColor: themes[theme]['foregroundColor'] },
+})
