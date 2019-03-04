@@ -20,7 +20,7 @@ const RigPost = ({ rig }) => (
   </View>
 );
 
-class CurrentRentalsList extends React.Component {
+class CompletedRentalsList extends React.Component {
     render() {
       const { rigs } = this.props;
       if (rigs.length >= 1){
@@ -31,7 +31,7 @@ class CurrentRentalsList extends React.Component {
     }
 }
 
-export default class CurrentRentalsL extends React.Component {
+export default class CompletedRentalsL extends React.Component {
   i = 4;
   state = {
     rigs: []
@@ -40,16 +40,6 @@ export default class CurrentRentalsL extends React.Component {
   componentDidMount(){
     this.setState({
       rigs: [
-        {
-          name: '1700+H|s',
-          hashrate: '1.73K',
-          avg: '1.90K',
-          ppaid: '0.00022544',
-          started: '2019-03-03 13:45:49',
-          ended: 'N/A',
-          img: 'https://picsum.photos/200?image=200',
-          key: 2,
-        },
         ...this.state.rigs,
       ]
     });
@@ -82,9 +72,9 @@ export default class CurrentRentalsL extends React.Component {
     return (
       <ScrollView style={styles.container, {backgroundColor: themes[theme]['backgroundColor'] }}>
         <View style={styles.innerContainer, {padding: 20}}>
-          <Text style={{color: themes[theme]['secondaryColor'], marginBottom: 10}}> Current Rentals </Text>
+          <Text style={{color: themes[theme]['secondaryColor'], marginBottom: 10}}> Completed Rentals </Text>
           <Button onPress={this.getMoreRigs} title="Refresh..."></Button>
-          <CurrentRentalsList rigs={rigs} />
+          <CompletedRentalsList rigs={rigs} />
         </View>
       </ScrollView>
     )

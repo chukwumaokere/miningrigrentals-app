@@ -30,18 +30,26 @@ export const styles = StyleSheet.create({
   rigInnerCard: {
     padding: 20,
   },
-  rigTitle: {
+  rigName: {
     color: themes[theme]['color'],
     fontSize: 16,
-    marginBottom: 3,
+    marginBottom: 10,
+    fontWeight: "900",
   },
   rigDesc: {
     color: themes[theme]['color'],
     fontSize: 12,
     marginBottom: 10,
   },
+  rigDescBold: {
+    color: themes[theme]['color'],
+    fontSize: 12,
+    marginBottom: 10,
+    fontWeight: 'bold',
+  },
   rigImg: {
     height: 200,
     padding: 10,
+    borderRadius: 5,
   },
 });

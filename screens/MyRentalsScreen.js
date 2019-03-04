@@ -1,7 +1,9 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import TopBarNav from 'top-bar-nav';
-import  CurrentRentalsL  from '../components/CurrentRentals';
+import CurrentRentalsL  from '../components/CurrentRentals';
+import PreviousRentalsL  from '../components/PreviousRentals';
+import CompletedRentalsL from '../components/CompletedRentals';
 import { ThemeContext, themes } from '../assets/themes';
 import { theme } from '../assets/theme';
 import { styles } from '../assets/styles';
@@ -13,19 +15,11 @@ const CurrentRentals = (props) => (
 );
 
 const RecentlyCompleted = (props) => (
-  <ScrollView style={styles.container, {backgroundColor: themes[theme]['backgroundColor']}}>
-    <View style={styles.innerContainer, {padding: 20}}>
-      <Text style={{color: themes[theme]['color']}}> Recently Completed </Text>
-    </View>
-  </ScrollView>
+  <CompletedRentalsL />
 );
 
 const PreviousRentals = (props) => (
-  <ScrollView style={styles.container, {backgroundColor: themes[theme]['backgroundColor'] }}>
-    <View style={styles.innerContainer, {padding: 20}}>
-      <Text style={{color: themes[theme]['color']}}> Previous Rentals </Text>
-    </View>
-  </ScrollView>
+  <PreviousRentalsL />
 );
 
 const ROUTES = {

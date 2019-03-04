@@ -20,7 +20,7 @@ const RigPost = ({ rig }) => (
   </View>
 );
 
-class CurrentRentalsList extends React.Component {
+class PreviousRentalsList extends React.Component {
     render() {
       const { rigs } = this.props;
       if (rigs.length >= 1){
@@ -31,22 +31,43 @@ class CurrentRentalsList extends React.Component {
     }
 }
 
-export default class CurrentRentalsL extends React.Component {
+export default class PreviousRentalsL extends React.Component {
   i = 4;
   state = {
-    rigs: []
+    rigs: [
+      {
+        name: 'CPU 8 CORE 16T',
+        hashrate: '1.00K',
+        avg: '1.08K',
+        ppaid: '0.0000745',
+        started: '2017-12-21 17:16:05',
+        ended: '2017-12-21 23:16:05',
+        img: 'https://picsum.photos/200?image=100',
+        key: 1,
+      },
+      {
+        name: '1900+H|s',
+        hashrate: '1.90K',
+        avg: '1.83K',
+        ppaid: '0.00018683',
+        started: '2017-12-21 17:02:25',
+        ended: '2017-12-22 01:02:25',
+        img: 'https://picsum.photos/200?image=400',
+        key: 0,
+      },
+    ]
   };
 
   componentDidMount(){
     this.setState({
       rigs: [
         {
-          name: '1700+H|s',
-          hashrate: '1.73K',
-          avg: '1.90K',
-          ppaid: '0.00022544',
-          started: '2019-03-03 13:45:49',
-          ended: 'N/A',
+          name: '1600+H|s',
+          hashrate: '1.60K',
+          avg: '1.81K',
+          ppaid: '0.00012533',
+          started: '2017-12-27 13:33:49',
+          ended: '2017-12-27 21:33:49',
           img: 'https://picsum.photos/200?image=200',
           key: 2,
         },
@@ -61,7 +82,7 @@ export default class CurrentRentalsL extends React.Component {
       {
         rigs: [
           {
-            name: `1${this.i}00+H|s`,
+            name: `Rig ${this.i}`,
             hashrate: `${this.i}K`,
             avg: `1.8${this.i}K`,
             ppaid: `0.000${this.i}2452`,
@@ -82,9 +103,8 @@ export default class CurrentRentalsL extends React.Component {
     return (
       <ScrollView style={styles.container, {backgroundColor: themes[theme]['backgroundColor'] }}>
         <View style={styles.innerContainer, {padding: 20}}>
-          <Text style={{color: themes[theme]['secondaryColor'], marginBottom: 10}}> Current Rentals </Text>
-          <Button onPress={this.getMoreRigs} title="Refresh..."></Button>
-          <CurrentRentalsList rigs={rigs} />
+          <Text style={{color: themes[theme]['secondaryColor'], marginBottom: 10}}> Previous Rentals </Text>
+          <PreviousRentalsList rigs={rigs} />
         </View>
       </ScrollView>
     )
