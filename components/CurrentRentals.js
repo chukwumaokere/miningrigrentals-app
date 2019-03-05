@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, Text, Image, Button, } from 'react-native';
+import { ScrollView, View, Text, Image, Button, RefreshControl, } from 'react-native';
 
 import { ThemeContext, themes } from '../assets/themes';
 import { theme } from '../assets/theme';
@@ -32,10 +32,19 @@ class CurrentRentalsList extends React.Component {
 }
 
 export default class CurrentRentalsL extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      refreshing: false,
+      rigs: [],
+    };
+  }
   i = 4;
-  state = {
+  /* state = {
     rigs: []
   };
+  */
+
 
   componentDidMount(){
     this.setState({
@@ -76,17 +85,36 @@ export default class CurrentRentalsL extends React.Component {
       () => (this.i = this.i + 1),
     )
   };
-
+  _onRefresh = () => {
+    this.setState({refreshing: true});
+    this.getMoreRigs();
+    this.setState({refreshing: false});
+  }
+  /** True on refresh
+  _onRefresh = () => {
+    this.setState({refreshing: true});
+    fetchData().then(() => {
+      this.setState({refreshing: false});
+    });
+  }
+  **/
   render(){
     const { rigs } = this.state;
     return (
-      <ScrollView style={styles.container, {backgroundColor: themes[theme]['backgroundColor'] }}>
+      <View style={styles.container}>
+      <Text style={{color: themes[theme]['secondaryColor'], margin: 20, paddingBottom: 0}}> Current Rentals </Text>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh} />
+        }
+       style={ {backgroundColor: themes[theme]['backgroundColor'] }}>
         <View style={styles.innerContainer, {padding: 20}}>
-          <Text style={{color: themes[theme]['secondaryColor'], marginBottom: 10}}> Current Rentals </Text>
-          <Button onPress={this.getMoreRigs} title="Refresh..."></Button>
+          {/*<Text style={{color: themes[theme]['secondaryColor'], marginBottom: 10}}> Current Rentals </Text> */}
+          <Button onPress={this.getMoreRigs} title="Pull up to refresh..."></Button>
           <CurrentRentalsList rigs={rigs} />
         </View>
       </ScrollView>
+      </View>
     )
   }
 }
