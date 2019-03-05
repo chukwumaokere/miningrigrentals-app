@@ -6,14 +6,14 @@ import { styles } from '../assets/styles';
 
 //var theme = 'dark';
 
-export default class MyRigsScreen extends React.Component {
+export default class SearchScreen extends React.Component {
   static navigationOptions = {
-    title: 'My Rigs',
+    title: 'Search Rigs',
   };
 
   render() {
     return (
-      <ScrollView style={styles.container, {backgroundColor: themes[theme]['backgroundColor'] }}>
+      <ScrollView style={styles.container, {backgroundColor: themes[theme]['backgroundColor']}}>
 
 
       </ScrollView>

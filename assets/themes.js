@@ -5,8 +5,10 @@ export const themes = {
       backgroundColor: "#fff",
       foregroundColor: "rgba(0,0,0,0.05)",
       color: 'black',
-      secondaryColor: "#fbfbfb",
+      secondaryColor: "black",
       borderColor: 'black',
+      red: "#f34541",
+      placeholderTextColor: "rgba(0,0,0,0.3)"
   },
   dark:{
       backgroundColor: "#202225",
@@ -14,6 +16,8 @@ export const themes = {
       color: "white",
       secondaryColor: "#fbfbfb",
       borderColor: 'white',
+      red: "#f34541",
+      placeholderTextColor: "rgba(255,255,255,0.3)"
   }
 };
 
