@@ -13,7 +13,7 @@ const bg = require('../assets/images/icon.png');
 
 export default class LoginScreen extends React.Component {
   static navigationOptions = {
-	title: 'Login',
+	title: 'Log Out',
   	header: false,
 	gesturesEnabled: false,
   };
@@ -62,7 +62,7 @@ export default class LoginScreen extends React.Component {
             .then( (responseJson) => {
               if(responseJson.response && responseJson.response.includes("Successful")){
                 this.setState({email : responseJson.data.email, firstname: responseJson.data.firstname, lastname: responseJson.data.lastname, phone: responseJson.data.phone, handlelinks: Boolean(responseJson.data.handlelinks), id: responseJson.data.id });
-                navigate('MyRentals', {data: this.state,});
+                navigate('Home', {data: this.state,});
                 console.log(responseJson);
               }else{
                 Alert.alert(responseJson); console.log('login issue');

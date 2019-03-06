@@ -102,15 +102,15 @@ export default class CurrentRentalsL extends React.Component {
     const { rigs } = this.state;
     return (
       <View style={styles.container}>
-      <Text style={{color: themes[theme]['secondaryColor'], margin: 20, paddingBottom: 0}}> Current Rentals </Text>
+      <Text style={{color: themes[theme]['secondaryColor'], margin: 20, marginTop: 3, paddingBottom: 0}}> Current Rentals </Text>
       <ScrollView
         refreshControl={
           <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh} />
         }
        style={ {backgroundColor: themes[theme]['backgroundColor'] }}>
-        <View style={styles.innerContainer, {padding: 20}}>
+        <View style={styles.innerContainer, {padding: 20, paddingTop: 0}}>
           {/*<Text style={{color: themes[theme]['secondaryColor'], marginBottom: 10}}> Current Rentals </Text> */}
-          <Button onPress={this.getMoreRigs} title="Pull up to refresh..."></Button>
+          <Button onPress={this.getMoreRigs} title="Pull or tap here to refresh..."></Button>
           <CurrentRentalsList rigs={rigs} />
         </View>
       </ScrollView>

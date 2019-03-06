@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, Text } from 'react-native';
 import { ThemeContext, themes } from '../assets/themes';
 import { theme } from '../assets/theme';
 import { styles } from '../assets/styles';
@@ -14,7 +14,7 @@ export default class SearchScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container, {backgroundColor: themes[theme]['backgroundColor']}}>
-
+        <Text style={{color: themes[theme]['color']}}> Search Rigs </Text>
 
       </ScrollView>
     );

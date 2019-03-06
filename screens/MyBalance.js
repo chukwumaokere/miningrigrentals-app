@@ -6,15 +6,15 @@ import { styles } from '../assets/styles';
 
 //var theme = 'dark';
 
-export default class SettingsScreen extends React.Component {
+export default class MyBalance extends React.Component {
   static navigationOptions = {
-    title: 'Settings',
+    title: 'Balance',
   };
 
   render() {
     return (
-      <ScrollView style={styles.container, {backgroundColor: themes.dark.backgroundColor}}>
-        <Text style={{color: themes[theme]['color']}}> Settings Page</Text>
+      <ScrollView style={styles.container, {backgroundColor: themes[theme]['backgroundColor']}}>
+        <Text style={{color: themes[theme]['color']}}> My Balance</Text>
 
       </ScrollView>
     );

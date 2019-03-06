@@ -28,6 +28,7 @@ export default class HomeScreen extends React.Component {
 
           </View>
         </ScrollView>
+        <Text style={{color: themes[theme]['color']}}> My Home</Text>
         {/*}
         <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>This app is in development mode</Text>
