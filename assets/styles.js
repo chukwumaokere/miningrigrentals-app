@@ -13,7 +13,7 @@ import { theme } from '../assets/theme';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
+    paddingTop: 20,
     backgroundColor: themes[theme]['backgroundColor']
   },
   innerContainer: {
@@ -52,4 +52,17 @@ export const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
   },
+  headerButton: {
+        height: 30,
+        width: 300,
+        flex: 0,
+        marginTop: 5,
+        marginLeft: 20,
+    },
+    hamburgerMenu: {
+    },
+    greetingHeader: {
+      fontSize: 24,
+      color: themes[theme]['color'],
+    }
 });

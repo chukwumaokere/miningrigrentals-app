@@ -124,6 +124,7 @@ const Drawer = createDrawerNavigator({
   contentOptions: {
     activeTintColor: themes[theme]['color'],
     inactiveTintColor: themes[theme]['secondaryFadedColor'],
+    itemStyle: (<TabBarIcon name={Platform.OS === 'ios' ? 'logo-bitcoin' : 'logo-bitcoin'} />),
   }
 })
 

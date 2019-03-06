@@ -1,13 +1,15 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import TopBarNav from 'top-bar-nav';
 import CurrentRentalsL  from '../components/CurrentRentals';
 import PreviousRentalsL  from '../components/PreviousRentals';
 import CompletedRentalsL from '../components/CompletedRentals';
+import { Drawer } from '../navigation/MainTabNavigator';
+import { Icon } from 'expo';
 import { ThemeContext, themes } from '../assets/themes';
 import { theme } from '../assets/theme';
 import { styles } from '../assets/styles';
-
+import logo from '../assets/images/icon.png';
 //var theme = 'dark';
 
 const CurrentRentals = (props) => (
@@ -45,13 +47,28 @@ const ROUTESTACK = [
 
 
 export default class MyRentalsScreen extends React.Component {
-  static navigationOptions = {
+  static navigationOptions = ({navigation}) => ({
     title: 'My Rentals',
-  };
-
+  });
+  popDrawer = () => {
+    this.props.navigation.openDrawer();
+    console.log(this.props.info);
+  }
   render() {
     return (
       <View style={styles.container}>
+      <View stlye={{flex: 1}}>
+      <TouchableOpacity
+        style={styles.headerButton}
+        onPress={this.popDrawer}>
+        <View style={{}}>
+          <Text style={{}}>
+            <Icon.Ionicons style={styles.hamburgerMenu} name="ios-menu" size={24} color={themes[theme]['color']} />
+            <Text style={styles.greetingHeader}> MiningRigRentals </Text>
+          </Text>
+        </View>
+      </TouchableOpacity>
+      </View>
         <View style={{ flex: 1 }}>
           <TopBarNav
             //custom: added logo param
