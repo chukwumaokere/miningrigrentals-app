@@ -40,11 +40,6 @@ export default class CurrentRentalsL extends React.Component {
     };
   }
   i = 4;
-  /* state = {
-    rigs: []
-  };
-  */
-
 
   componentDidMount(){
     this.setState({
@@ -86,9 +81,16 @@ export default class CurrentRentalsL extends React.Component {
     )
   };
   _onRefresh = () => {
-    this.setState({refreshing: true});
-    this.getMoreRigs();
-    this.setState({refreshing: false});
+    var a = this;
+    var refresh = new Promise(function(resolve, reject){
+      a.getMoreRigs();
+      resolve('Success');
+    });
+
+    a.setState({refreshing: true});
+    refresh.then(function(value){
+      a.setState({refreshing: false});
+    });
   }
   /** True on refresh
   _onRefresh = () => {
@@ -102,18 +104,18 @@ export default class CurrentRentalsL extends React.Component {
     const { rigs } = this.state;
     return (
       <View style={styles.container}>
-      <Text style={{color: themes[theme]['secondaryColor'], margin: 20, marginTop: 3, paddingBottom: 0}}> Current Rentals </Text>
-      <ScrollView
-        refreshControl={
-          <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh} />
-        }
-       style={ {backgroundColor: themes[theme]['backgroundColor'] }}>
-        <View style={styles.innerContainer, {padding: 20, paddingTop: 0}}>
-          {/*<Text style={{color: themes[theme]['secondaryColor'], marginBottom: 10}}> Current Rentals </Text> */}
-          <Button onPress={this.getMoreRigs} title="Pull or tap here to refresh..."></Button>
-          <CurrentRentalsList rigs={rigs} />
-        </View>
-      </ScrollView>
+        <Text style={{color: themes[theme]['secondaryColor'], margin: 20, marginTop: 3, paddingBottom: 0}}> Current Rentals </Text>
+        <ScrollView
+          refreshControl={
+            <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh} />
+          }
+         style={ {backgroundColor: themes[theme]['backgroundColor'] }}>
+          <View style={styles.innerContainer, {padding: 20, paddingTop: 0}}>
+            {/*<Text style={{color: themes[theme]['secondaryColor'], marginBottom: 10}}> Current Rentals </Text> */}
+            <Button onPress={this.getMoreRigs} title="Pull or tap here to refresh..."></Button>
+            <CurrentRentalsList rigs={rigs} />
+          </View>
+        </ScrollView>
       </View>
     )
   }

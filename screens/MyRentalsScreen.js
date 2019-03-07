@@ -4,7 +4,7 @@ import TopBarNav from 'top-bar-nav';
 import CurrentRentalsL  from '../components/CurrentRentals';
 import PreviousRentalsL  from '../components/PreviousRentals';
 import CompletedRentalsL from '../components/CompletedRentals';
-import { Drawer } from '../navigation/MainTabNavigator';
+//import { Drawer } from '../navigation/MainTabNavigator';
 import { Icon } from 'expo';
 import { ThemeContext, themes } from '../assets/themes';
 import { theme } from '../assets/theme';
@@ -52,23 +52,22 @@ export default class MyRentalsScreen extends React.Component {
   });
   popDrawer = () => {
     this.props.navigation.openDrawer();
-    console.log(this.props.info);
   }
   render() {
     return (
       <View style={styles.container}>
-      <View stlye={{flex: 1}}>
-      <TouchableOpacity
-        style={styles.headerButton}
-        onPress={this.popDrawer}>
-        <View style={{}}>
-          <Text style={{}}>
-            <Icon.Ionicons style={styles.hamburgerMenu} name="ios-menu" size={24} color={themes[theme]['color']} />
-            <Text style={styles.greetingHeader}> MiningRigRentals </Text>
-          </Text>
+        <View stlye={{flex: 1}}>
+          <TouchableOpacity
+            style={styles.headerButton}
+            onPress={this.popDrawer}>
+            <View style={{}}>
+              <Text style={{}}>
+                <Icon.Ionicons style={styles.hamburgerMenu} name="ios-menu" size={24} color={themes[theme]['color']} />
+                <Text style={styles.greetingHeader}>    MiningRigRentals </Text>
+              </Text>
+            </View>
+          </TouchableOpacity>
         </View>
-      </TouchableOpacity>
-      </View>
         <View style={{ flex: 1 }}>
           <TopBarNav
             //custom: added logo param

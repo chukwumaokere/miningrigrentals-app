@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, Text, Image, Button, } from 'react-native';
+import { ScrollView, View, Text, Image, Button, RefreshControl, } from 'react-native';
 
 import { ThemeContext, themes } from '../assets/themes';
 import { theme } from '../assets/theme';
@@ -34,6 +34,7 @@ class CompletedRentalsList extends React.Component {
 export default class CompletedRentalsL extends React.Component {
   i = 4;
   state = {
+    refreshing: false,
     rigs: []
   };
 
@@ -67,16 +68,35 @@ export default class CompletedRentalsL extends React.Component {
     )
   };
 
+  _onRefresh = () => {
+    var a = this;
+    var refresh = new Promise(function(resolve, reject){
+      a.getMoreRigs();
+      resolve('Success');
+    });
+
+    a.setState({refreshing: true});
+    refresh.then(function(value){
+      a.setState({refreshing: false});
+    });
+  }
+
   render(){
     const { rigs } = this.state;
     return (
-      <ScrollView style={styles.container, {backgroundColor: themes[theme]['backgroundColor'] }}>
-        <View style={styles.innerContainer, {padding: 20}}>
-          <Text style={{color: themes[theme]['secondaryColor'], marginBottom: 10}}> Completed Rentals </Text>
-          <Button onPress={this.getMoreRigs} title="Refresh..."></Button>
-          <CompletedRentalsList rigs={rigs} />
-        </View>
-      </ScrollView>
+      <View style={styles.container}>
+        <Text style={{color: themes[theme]['secondaryColor'], margin: 20, marginTop: 3, paddingBottom: 0}}> Completed Rentals </Text>
+        <ScrollView
+          refreshControl={
+            <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh} />
+          }
+         style={ {backgroundColor: themes[theme]['backgroundColor'] }}>
+          <View style={styles.innerContainer, {padding: 20, paddingTop: 0}}>
+          {/* <Button onPress={this.getMoreRigs} title="Refresh..."></Button> */}
+            <CompletedRentalsList rigs={rigs} />
+          </View>
+        </ScrollView>
+      </View>
     )
   }
 }
