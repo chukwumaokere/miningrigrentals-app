@@ -12,8 +12,18 @@ export default class MyRigsScreen extends React.Component {
     title: 'My Rigs',
   };
   state = {
-    rigs: "",
+    rigs: 0,
   }
+
+  componentDidMount(){
+    var a = this;
+    a.getMyRigs();
+  };
+  
+  componentWillUnmount(){
+    this.setState({rigs: 0})
+  };
+
   getMyRigs = () => {
     fetch('https://chukwumaokere.com/mrr/webservice.php', {
       method: 'post',
@@ -27,26 +37,18 @@ export default class MyRigsScreen extends React.Component {
         type: 'GET',
         endpoint: '/rig/mine'
       })
-    }).then( (response) => response.json() ).then( (responseJson) => { console.log(responseJson); })
+    }).then( (response) => response.json() )
+    .then( (responseJson) => {
+      console.log(responseJson);
+      if (responseJson.success==true){
+        console.log(responseJson.data.length);
+        this.setState({rigs: responseJson.data.length + this.state.rigs + 1,});
+      }
+    });
   }
 
   popDrawer = () => {
     this.props.navigation.openDrawer();
-  }
-
-  whoami = () => {
-    fetch('https://chukwumaokere.com/mrr/webservice.php', {
-      method: 'post',
-      header: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        key: mrr.key,
-        secret: mrr.secret,
-        endpoint: '/whoami'
-      })
-    }).then( (response) => response.json() ).then( (responseJson) => { console.log(responseJson); })
   }
 
   render() {
@@ -66,10 +68,9 @@ export default class MyRigsScreen extends React.Component {
         </View>
         <View style={{ flex: 1 }}>
           <Text style={{color: themes[theme]['secondaryColor'], padding: 20, marginBottom: 20, backgroundColor: themes[theme]['foregroundColor']}}> My Rigs </Text>
-          {/* <Text style={{color: themes[theme]['color']}}> My Rigs</Text> */}
           <ScrollView style={styles.container, {backgroundColor: themes[theme]['backgroundColor'] }}>
-            <Text style={{color: themes[theme]['secondaryColor'], paddingLeft: 20 }}> You have 0 rented rigs </Text>
-            <Button onPress={this.getMyRigs} title="Get Rigs"></Button>
+            <Text style={{color: themes[theme]['secondaryColor'], paddingLeft: 20 }}> You have {this.state.rigs} rented rigs </Text>
+            <Button onPress={this.getMyRigs} title="Get Rigs Count"></Button>
           </ScrollView>
         </View>
       </View>
