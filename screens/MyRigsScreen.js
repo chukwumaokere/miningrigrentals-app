@@ -5,7 +5,6 @@ import { ThemeContext, themes } from '../assets/themes';
 import { theme } from '../assets/theme';
 import { styles } from '../assets/styles';
 import { mrr } from '../constants/APIconfig';
-//var theme = 'dark';
 
 export default class MyRigsScreen extends React.Component {
   static navigationOptions = {
@@ -13,11 +12,9 @@ export default class MyRigsScreen extends React.Component {
   };
   state = {
     rigs: 0,
-    shouldUpdate: false,
   }
 
   componentDidMount(){
-    //this._componentFocused();
     this._sub = this.props.navigation.addListener('didFocus',
       this._componentFocused
     );
