@@ -13,16 +13,21 @@ export default class MyRigsScreen extends React.Component {
   };
   state = {
     rigs: 0,
+    shouldUpdate: false,
   }
 
   componentDidMount(){
-    var a = this;
-    a.getMyRigs();
-  };
-  
-  componentWillUnmount(){
-    this.setState({rigs: 0})
-  };
+    //this._componentFocused();
+    this._sub = this.props.navigation.addListener('didFocus',
+      this._componentFocused
+    );
+  }
+  componentWillUnmount() {
+    this._sub.remove();
+  }
+  _componentFocused = () => {
+    this.getMyRigs();
+  }
 
   getMyRigs = () => {
     fetch('https://chukwumaokere.com/mrr/webservice.php', {
@@ -42,7 +47,7 @@ export default class MyRigsScreen extends React.Component {
       console.log(responseJson);
       if (responseJson.success==true){
         console.log(responseJson.data.length);
-        this.setState({rigs: responseJson.data.length + this.state.rigs + 1,});
+        this.setState({rigs: responseJson.data.length + this.state.rigs,});
       }
     });
   }
@@ -70,7 +75,7 @@ export default class MyRigsScreen extends React.Component {
           <Text style={{color: themes[theme]['secondaryColor'], padding: 20, marginBottom: 20, backgroundColor: themes[theme]['foregroundColor']}}> My Rigs </Text>
           <ScrollView style={styles.container, {backgroundColor: themes[theme]['backgroundColor'] }}>
             <Text style={{color: themes[theme]['secondaryColor'], paddingLeft: 20 }}> You have {this.state.rigs} rented rigs </Text>
-            <Button onPress={this.getMyRigs} title="Get Rigs Count"></Button>
+            <Button onPress={this.getMyRigs} title="Refresh Rigs Count"></Button>
           </ScrollView>
         </View>
       </View>
